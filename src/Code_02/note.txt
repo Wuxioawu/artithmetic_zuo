@@ -1,0 +1,64 @@
+XOR Operation (Exclusive OR)
+Definition:
+If two bits are the same, XOR result is 0.
+If two bits are different, XOR result is 1.
+
+Key Concept:
+XOR can be understood as addition without carrying.
+
+Properties:
+Commutative Law: A ⊕ B = B ⊕ A
+Associative Law: (A ⊕ B) ⊕ C = A ⊕ (B ⊕ C)
+
+Important Results:
+0 ⊕ N = N
+N ⊕ N = 0
+
+Uniqueness:
+Given a set of numbers, no matter how you group or order the XOR operations, the final result is uniquely determined.
+
+How to Swap Two Numbers Without Extra Variables?
+You can swap two integers a and b using XOR:
+
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+After these three steps, a and b are swapped without using any extra space.
+
+
+Classic XOR Interview Problems
+
+1. In an array, one number appears an odd number of times, and all other numbers appear even times.
+How to find and print this number?
+Idea: XOR all elements in the array.
+Because N ⊕ N = 0, numbers appearing even times will cancel out.
+The final result will be the number that appears an odd number of times.
+
+
+2. How to extract the rightmost 1-bit from an integer?
+Formula:
+int rightOne = num & (-num);
+This operation isolates the lowest set bit (the rightmost 1) in a binary number.
+
+
+3. In an array, exactly two numbers appear odd times, all others appear even times.
+How to find and print these two numbers?
+Idea:
+XOR all numbers → get eor = a ⊕ b (where a and b are the two odd-count numbers, and a != b).
+Find the rightmost set bit in eor (this bit is where a and b differ).
+Partition numbers into two groups based on this bit and XOR separately to find a and b.
+
+
+4. In an array: one number appears exactly K times, while all others appear M times (M > 1, K < M).
+Find and return the number appearing K times, using O(1) extra space and O(N) time.
+
+
+Idea:
+Use bit counting: for each bit position (0 to 31), count the number of 1s across all numbers.
+
+Modulo each count by M.
+The remaining bits form the number that appears K times.
+
+
+
+

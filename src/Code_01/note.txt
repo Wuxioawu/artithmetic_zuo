@@ -1,0 +1,150 @@
+plan：
+ALl of March
+10 classes
+
+
+April：
+the number of classes is 30.
+
+End of May：
+The system of arithmetic
+
+advanced：normal question about arithmetic（17-48节）
+
+if you finished comprehend these classes, you can start to interview.
+---
+
+question from big companies classes, mainly question content
+
+The form of interview
+1. white black
+2. paper
+3. txt online or idea
+
+time complexity
+---
+
+1. constant time operation：
+1. its time complexity is O(1)
+2. A constant time operation is an operation that takes the same amount of time to execute, regardless of the size of the input.
+
+
+accessing an element in an array by index.
+assigning a value to a variable
+
+
+linked list：Linked lists use pointers stored in each node to locate the next node in memory, allowing them to occupy non-contiguous memory locations.
+
+
+time complexity:
+
+Fine-grained Breakdown to Constant-Time Operations
+
+When analyzing an algorithm, we need to break down every part of the process into constant-time operations.
+Each basic step (such as a comparison, assignment, addition, etc.) should be counted as a single operation.
+
+At the end, we express the total number of operations as a mathematical expression.
+In this expression, we ignore all the lower-order terms and constant coefficients — we only focus on the term with the highest order
+
+When N approaches infinity (i.e., when the data size becomes extremely large),
+only the growth rate of the highest-order term truly matters for the algorithm's performance.
+Lower-order terms and constants become negligible in comparison.
+Thus, time complexity estimation is intentionally coarse —
+it captures the dominant behavior of the algorithm as data scales up,
+not the exact number of operations.
+
+
+How to Evaluate an Algorithm's Performance?
+Time Complexity
+Determine the relationship between the total number of operations and the input size (N).
+Focus only on the highest-order term in the expression.
+
+Auxiliary Space Complexity
+Auxiliary space refers to the extra memory the algorithm needs beyond the input.
+If the additional memory used is limited (independent of N), the auxiliary space complexity is constant, i.e., O(1).
+
+Analyze the Worst-Case Scenario
+Always evaluate the algorithm's time complexity based on the worst possible input case,
+to ensure a reliable upper bound for the performance.
+
+
+
+
+
+three examples:
+
+selection sort:
+
+bubble sort:
+
+notice：
+1. （Algorithm Independence from Programming Language）The process of an algorithm is independent of any specific programming language.
+2. Familiarity Before Analyzing Time Complexity
+3.
+when breaking down an algorithm's process for analysis, ensure that all operations are constant-time operations.
+This means you must be very familiar with every system API used in your algorithm; otherwise, your time complexity estimation may be inaccurate.
+
+If two algorithms share the same time complexity, compare their constant factors.
+
+Optimal Solution：
+Satisfies the problem requirements with the lowest possible time complexity.
+Within the lowest time complexity, aims to minimize space complexity.
+
+O(1), O(logN), O(N), O(N * logN),O(N2),O(N3),O(NK),O(2N),O(3N),O(kN),O(N!)
+
+
+Verifier/Comparator (Testing Algorithms)：
+Use both suboptimal method and the optimal method to handle randomly generated large data smaples.
+Compare their outputs to validate correctness.
+
+
+binary search：
+1. Existence of a target in a Sorted Array
+Check whether a specific number exists in a sorted array.
+
+2. Find the leftmost Position >= Target in a Sorted Array
+Find the leftmost index where the element is great that or equal to given target in a sorted array.
+
+3. Find the rightmost Position <= Target in a sorted Array
+Find the rightmost index where the element is less than or equal to a given target in a sorted array.
+
+
+Local Minimum Problem(Unordered Array)
+Definition of a Local Minimum:
+At index 0: If arr[0] < arr[1], then arr[0] is a local minimum.
+At index N-1: If arr[N-2] > arr[N-1], then arr[N-1] is a local minimum.
+At any middle index i: If arr[i] < arr[i-1] and arr[i] < arr[i+1], then arr[i] is a local minimum.
+
+
+
+
+O(log2N)
+
+
+insertion sort:
+
+Merge Sort
+
+Quick Sort
+
+Heap Sort
+
+Shell Sort
+
+Counting Sort
+
+Radix Sort
+
+Bucket Sort
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,142 @@
+Singly Linked List:
+Each node points to the next node only.
+Used for forward traversal.
+
+Double Linked List:
+Each node contains two references:
+One to the next node
+One to the previous node
+Allows traversal in both directions.
+
+Linked List interview Questions:
+1. Reverse a singly or double linked list
+2. Remove all nodes with a given value
+
+Stack and Queue Basic
+Stack: Last-In-First-Out (LIFO), like a bullet magazine
+Queue: First-In-First-Out (FIFO), like people lining up
+
+Doubly Linked List for Stack/Queue:
+Can implement a deque (double-ended queue)
+Elements can be added or removed from both head and tail
+
+
+Fixed-Size Implementations
+Stack: Can be implemented using a fixed-size array
+Queue: Google often asks about circular array-based queue implementation
+
+
+Classic interview Problem: Min Stack
+
+Implement a special stack that supports push(), pop(), and getMin() — all in O(1) time.
+Use two stacks:
+One to store data
+One to store minimum values
+When pushing or popping, update both stacks in sync
+
+
+Stack vs Queue Transformations
+1. Implement a Queue using Two Stacks
+Use two stacks: stackIn and stackOut
+When pop() or peek() is called:
+If stackOut is empty, move all elements from stackIn to stackOut
+Otherwise, just pop from stackOut
+Important: Don't move data if stackOut is not empty
+
+
+2. Implement a Stack using Two Queues
+Use two queues to simulate a stack
+Push normally into the main queue
+On pop(), move all elements except the last into a helper queue
+Swap the two queues
+
+Real Interview Questions
+BFS (Breadth-First Search): Typically uses a queue
+DFS (Depth-First Search): Can be implemented using a stack
+
+---------------------------------------------------------
+Recursive vs. Non-Recursive (Iterative)
+Any recursive algorithm can be rewritten iteratively
+The system uses a call stack to simulate recursion internally
+You can manually use a stack data structure to convert recursion into iteration
+
+
+Key Points for Recursion Design
+Always define a clear base case (when to stop)
+Draw the recursion tree to understand the calling process and subproblems
+Understand how the system stack works in managing recursive calls
+
+
+Master Theorem – Analyzing Recursive Time Complexity
+
+If a recursive function breaks a problem of size N into a subproblems, each of size N/b, and does O(N^d) extra work per level, we can write:
+(N) = a * T(N / b) + O(N^d)
+
+- a: number of subproblems
+- b: factor by which problem size is reduced
+- d: exponent for the cost outside recursive calls
+
+Case 1:
+    If log_b(a) < d
+    => T(N) = O(N^d)
+
+Case 2:
+    If log_b(a) > d
+    => T(N) = O(N^log_b(a))
+
+Case 3:
+    If log_b(a) == d
+    => T(N) = O(N^d * log N)
+
+note: the master Theorem can be used when the subproblems's size is same,
+
+--------------------------------------------------------------
+
+==============================
+Hash Table vs. Ordered Map
+==============================
+
+Hash Table (e.g., HashMap in Java):
+------------------------------------
+- Operations like insert, delete, search, and update are typically considered O(1) time.
+- However, the constant time can be relatively large, though it is still independent of data size.
+- HashMap stores memory addresses only (references).
+
+Data Passing:
+- Primitive types (e.g., int, double) are passed by value.
+- Custom objects are passed by reference.
+
+Ordered Map (e.g., TreeMap in Java):
+-------------------------------------
+- Implemented using self-balancing binary search trees (e.g., Red-Black Tree).
+- Other common implementations: AVL Tree, Size-Balanced Tree (SB Tree), Skip List.
+- All operations (insert, delete, search) take O(log N) time.
+
+Key Characteristics:
+- Keys are stored in sorted order.
+- For primitive types, ordering is based on natural order.
+- For custom types, you must implement your own comparator (e.g., by implementing `Comparable` or providing a `Comparator`), otherwise sorting will fail.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
