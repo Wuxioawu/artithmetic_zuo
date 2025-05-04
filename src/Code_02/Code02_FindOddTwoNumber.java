@@ -92,7 +92,7 @@ public class Code02_FindOddTwoNumber {
             }
 
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static int[] getArrayOddTwoTime(int maxSize, int maxValue) {

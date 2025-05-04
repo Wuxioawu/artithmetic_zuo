@@ -61,7 +61,7 @@ public class Code07_TwoQueueImplementStack {
                 }
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void main(String[] args) {

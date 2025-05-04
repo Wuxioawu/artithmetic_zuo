@@ -131,7 +131,7 @@ public class Code04_RingArray {
                 }
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void testMyStack() {
@@ -176,7 +176,7 @@ public class Code04_RingArray {
                 }
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void main(String[] args) {

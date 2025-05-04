@@ -98,7 +98,7 @@ public class Code01_ReverseList {
             }
 
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void testDoubleList() {
@@ -119,7 +119,7 @@ public class Code01_ReverseList {
                 System.out.println(Constants.CODE_ERROR);
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
 
     }
 

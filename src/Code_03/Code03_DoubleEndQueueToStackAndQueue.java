@@ -170,7 +170,7 @@ public class Code03_DoubleEndQueueToStackAndQueue {
                 }
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void testMyQueue() {
@@ -204,7 +204,7 @@ public class Code03_DoubleEndQueueToStackAndQueue {
                 }
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void testMyStack() {
@@ -238,7 +238,7 @@ public class Code03_DoubleEndQueueToStackAndQueue {
                 }
             }
         }
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
     public static void main(String[] args) {

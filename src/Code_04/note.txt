@@ -1,0 +1,56 @@
+Merge Sort
+Divide the array recursively until each part contains only one element.
+Conquer by merging sorted halves back together.
+
+Merge Step:
+Use a temporary array to compare and copy the smaller element from each sorted half.
+This step takes linear time O(N) per merge.
+
+Quicksort compared with Recursive version:
+Time Complexity: O(N²)
+Wastes a lot of comparison steps.
+Every comparison turns directly into a result.
+So time complexity becomes O(N * logN).
+
+Iterative version (non-recursive):
+Set step length, compare and copy.
+Non-recursive version works from the bottom up, returning values like function returns.
+Final time complexity is O(N * logN).
+
+---------------------------------------------------------------------
+
+Three Classic Interview Questions — All Solved Using Merge Sort (O(N * logN))
+
+1. Small Sum Problem
+For each number in the array, sum all the numbers to its left that are smaller than it. The total of all such sums is called the "small sum".
+🔍 How to solve it with time complexity O(N * logN)?
+
+Use merge sort.
+During the merge step, check how many numbers on the right are greater than the current number from the left side.
+Add count * current_number to the total small sum.
+⚠️ Why do we copy the right part first when elements are equal?
+To distinguish which one is bigger.
+Copying the right part first ensures correct counting when handling equal elements.
+
+2. Reverse Pair Problem
+In an array, a reverse pair is a pair where the number on the left is greater than a number on the right, and the two numbers are not adjacent.
+🔍 Goal:
+Count how many reverse pairs are in the array.
+This is like the small sum problem, but the condition is reversed.
+In other words, for each number, count how many numbers to its right are smaller than it.
+🔄 Variations:
+Use merge sort and count from right to left.
+Or process using descending order logic.
+
+
+3. Double Comparison Problem
+For each number in the array, find out how many numbers to its right satisfy:
+num_on_right * 2 < current_num
+🧠 Key Idea:
+Do not backtrack.
+First count valid pairs during the merge process, then merge the subarrays.
+✅ Why merge sort works:
+Merge sort turns the array into partially sorted segments.
+Many problems involving ordering or relative comparisons can be handled efficiently when the data is partially ordered.
+
+

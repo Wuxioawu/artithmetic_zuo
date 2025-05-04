@@ -100,7 +100,7 @@ public class Code02_DeleteGivenValue {
             }
         }
 
-        System.out.println(Constants.NICE);
+        System.out.println(Constants.TEST_FINISH);
     }
 
 

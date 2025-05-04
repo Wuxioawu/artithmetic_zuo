@@ -14,9 +14,9 @@ public interface Constants {
     int TEST_TIMES = 10000000;
 
 
-    String NICE = "Nice";
-    String CODE_ERROR = "CodeError";
-    String START_TEST = " -----------------------The test start ---------------------";
+    String TEST_FINISH = "-------------------the test finished--------------------------------";
+    String CODE_ERROR = "------------------------CodeError--------------------------------";
+    String START_TEST = "-----------------------The test start ---------------------";
 
 
 
