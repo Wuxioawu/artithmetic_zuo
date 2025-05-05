@@ -1,0 +1,98 @@
+Advanced Merge Sort Problem
+
+Problem Description
+Given an integer array arr, and two integers lower and upper,
+return the number of subarrays whose sum lies within the range [lower, upper].
+
+Prefix Sum:
+To compute the sum of any subarray arr[i..j], use the prefix sum approach:
+Sum(i..j) = prefix[j] - prefix[i - 1]
+Where:
+prefix[k] = sum of all elements from arr[0] to arr[k].
+This transforms the problem of subarray sums into differences between prefix sums.
+
+
+🧠 Strategy 1: Using Merge Sort Structure
+Goal: For each prefix sum, count how many earlier prefix sums fall into a range:
+[x - upper, x - lower]
+Steps:
+1. Convert the original array into a prefix sum array.
+
+2. Use a modified merge sort to recursively:
+
+Divide the prefix array.
+Count valid subarrays across the left and right parts before merging.
+Merge the sorted parts.
+
+Key idea:
+Separate the counting step from the merging step, which enables using divide & conquer efficiently.
+
+
+Strategy 2: Using an Ordered Set (Balanced Tree)
+An alternative approach is to maintain an ordered set (e.g., TreeSet or self-implemented BST) of prefix sums.
+Steps:
+Iterate through the prefix sum array.
+For each prefix value x, query how many values in the set fall within:
+[x - upper, x - lower]
+Insert the current prefix into the set for future queries.
+Benefit: This is a good way to practice implementing your own ordered set structure or interfaces like TreeMap.
+
+
+----------------------------------------------------------
+Dutch National Flag Problem
+
+Partition an array based on a pivot value x, with two possible strategies:
+1. Two-Way Partitioning
+Place elements ≤ x on the left
+Place elements > x on the right
+
+2. Three-Way Partitioning
+Elements < x on the left
+Elements == x in the middle
+Elements > x on the right
+
+⏱ Time Complexity: O(N)
+⚠ Not required to be fully sorted.
+🚫 No backtracking (window does not reverse).
+
+
+Implementation Detail:
+Typically, use the last element as the pivot x.
+After partitioning, swap the pivot into its correct position.
+Return a 2-element array representing the start and end indices of the region where elements equal x.
+
+
+Quick Sort
+Version 1.0: Basic QuickSort
+Partition the entire array using the Dutch National Flag logic.
+Recursively sort ≤ x region and > x region.
+Each recursion handles only one pivot at a time.
+
+Version 2.0: Three-Way Partitioning
+Operate over a given subarray range.
+Partition returns the [equalStart, equalEnd] region.
+Recursively apply on < x region and > x region.
+More efficient when duplicates are present.
+
+Version 3.0: Randomized QuickSort (Optimal Academic Version)
+Randomly select a pivot, swap it with the last element.
+Apply Dutch National Flag partitioning.
+Mathematical analysis shows that expected time complexity is O(N * logN) in the long run.
+
+Extra Space Complexity
+QuickSort is in-place, so extra space complexity = O(logN) due to recursion stack.
+If implemented iteratively, the stack is used to record subarray ranges manually.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
