@@ -67,7 +67,7 @@ public class Code02_FindOddTwoNumber {
             int[] oddTwoNumber = findOddTwoNumber(arrayOddTwoTime);
             int[] comparator = comparator(arrayOddTwoTime);
 
-            if(oddTwoNumber.length != comparator.length) {
+            if (oddTwoNumber.length != comparator.length) {
                 System.out.println("oddTwoNUmber.length :" + oddTwoNumber.length + "   comparator.length: " + comparator.length);
                 System.out.println("oddTwoNumber.length != comparator.length");
                 ArrayOperation.printArray(arrayOddTwoTime);
@@ -84,7 +84,7 @@ public class Code02_FindOddTwoNumber {
             ArrayOperation.sort(oddTwoNumber);
             ArrayOperation.sort(comparator);
 
-            if(oddTwoNumber[0] != comparator[0] || oddTwoNumber[1] != comparator[1]) {
+            if (oddTwoNumber[0] != comparator[0] || oddTwoNumber[1] != comparator[1]) {
                 ArrayOperation.printArray(arrayOddTwoTime);
                 ArrayOperation.printArray(comparator);
                 ArrayOperation.printArray(oddTwoNumber);
@@ -131,11 +131,10 @@ public class Code02_FindOddTwoNumber {
             index++;
         }
 
-        ArrayOperation.shuffleArray(newArr);
+        ArrayOperation.shuffleArray(newArr, 0, arr.length - 1);
 
         return newArr;
     }
-
 
 
     public static void main(String[] args) {

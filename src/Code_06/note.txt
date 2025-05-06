@@ -1,0 +1,101 @@
+Comparator：
+
+A comparator is essentially an implementation that overrides the comparison operator to define custom sorting logic.
+It is widely used when the default sorting behavior (natural order) does not fit your needs.
+
+
+Applications of a Comparator：
+✅ Used for custom sorting according to specific rules (e.g., sort by age, name length, etc.).
+✅ Useful in generic programming, making sorting logic flexible and reusable.
+✅ Can be integrated into data structures that require ordering, like:
+Priority Queues / Heaps
+Ordered Maps / Sets (like TreeMap, TreeSet in Java)
+
+
+Comparator method:
+< 0: comes before
+> 0: comes after
+==0 si relevant
+
+Comparator can be used in Data Structures
+such as : Heaps(PriorityQueue), TreeMap/ TreeSet
+
+---------------------------------------------------------
+Heap Structure:
+
+A heap is a complete binary tree implemented with an array.
+In a complete binary tree:
+All levels are full except possibly the last, which is filled from left to right.
+An array with elements indexed from 0 can naturally represent a complete binary tree.
+
+2. Types of Heaps
+Max-Heap (Big Root Heap):
+The value of each parent node is greater than or equal to its children.
+The maximum value is always at the top (index 0).
+Min-Heap (Small Root Heap):
+The value of each parent node is less than or equal to its children.
+The minimum value is always at the top.
+
+
+Complete Binary Tree:
+If all levels are fully filled except possibly the last, which is filled from left to right, it's a complete binary tree.
+An array indexed from 0 can be treated as a complete binary tree:
+Left child of index i: 2 * i + 1
+Right child of index i: 2 * i + 2
+Parent of index i: (i - 1) / 2
+
+Heap Operations:
+heapInsert (heapify up): Insert an element and move it up to maintain heap property.
+heapify (heapify down): After removing the root, move the new root down to restore heap property.
+Heap supports both insertion and deletion in O(logN) time.
+
+
+Heap Sort Algorithm:
+Transform the array into a Max-Heap.
+Swap the root (max) with the last element and reduce heap size.
+Re-heapify from the root down.
+
+Repeat until the heap is empty.
+Time Complexity: O(N logN)
+Space Complexity: O(1)
+
+
+Building a Heap:
+From bottom-up (recommended for batch data):
+More efficient as many nodes are leaf nodes and require no movement.
+Time Complexity: O(N)
+
+From top-down (insertion method):
+Each insert takes O(logN), so N inserts take O(N logN)
+
+
+Interview Problem:
+Nearly Sorted Array:
+Given an array where each element is at most K positions away from its sorted position, sort the array efficiently.
+Best Strategy:
+Use a Min-Heap of size K.
+Time Complexity: O(N logK)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

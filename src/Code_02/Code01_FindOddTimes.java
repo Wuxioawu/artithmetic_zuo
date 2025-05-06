@@ -44,7 +44,7 @@ public class Code01_FindOddTimes {
             }
         }
 
-        ArrayOperation.shuffleArray(arr);
+        ArrayOperation.shuffleArray(arr, 0, arr.length - 1);
 
         return arr;
     }

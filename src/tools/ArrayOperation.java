@@ -129,11 +129,11 @@ public class ArrayOperation {
         return set.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    public static void shuffleArray(int[] arr) {
+    public static void shuffleArray(int[] arr, int left, int right) {
         if (isEmpty(arr)) return;
         Random random = new Random();
-        for (int i = arr.length - 1; i >= 0; i--) {
-            int index = random.nextInt(i + 1);
+        for (int i = right; i >= left; i--) {
+            int index = left + random.nextInt(right - left + 1);
             swap(arr, index, i);
         }
     }

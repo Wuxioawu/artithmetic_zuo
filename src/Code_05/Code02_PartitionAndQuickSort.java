@@ -223,7 +223,7 @@ public class Code02_PartitionAndQuickSort {
         ArrayOperation.swap(arr, randomIndex, right);
 
         int[] result = partition(arr, left, right);
-
+        if (ArrayOperation.isEmpty(result)) return;
         processThree(arr, left, result[0] - 1);
         processThree(arr, result[1] + 1, right);
     }

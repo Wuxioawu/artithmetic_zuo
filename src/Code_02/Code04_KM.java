@@ -79,7 +79,7 @@ public class Code04_KM {
         for (; index < arr.length; index++) {
             arr[index] = numbersK;
         }
-        ArrayOperation.shuffleArray(arr);
+        ArrayOperation.shuffleArray(arr, 0, arr.length - 1);
 
         return arr;
     }
