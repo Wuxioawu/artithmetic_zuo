@@ -1,0 +1,164 @@
+Maximum Overlapping Segments Problem Description:
+
+Problem Description:
+1. You are given a list of line segments. Each segment is represented as a pair of integers: [start, end].
+2. Each segment includes both its start and end points (closed interval).
+3. Constraint: Both start and end are integers.
+A valid overlapping region must have a length ≥ 1 (i.e., not just a point).
+Return the maximum number of overlapping segments over any region that satisfies this condition.
+
+Strategy:
+Sort the segments by their start value in ascending order.
+Use a min-heap (priority queue) to keep track of the active segments (based on their end positions).
+
+Core Idea:
+As you iterate through each segment in order of start, you:
+1. Remove from the heap all segments that end before the current segment’s start (end < current_start + 1),
+because they do not form an overlapping region of length ≥ 1.
+2. Add the current segment’s end into the heap.
+3.The size of the heap at any time represents the number of overlapping segments at that point.
+4.Track the maximum heap size throughout the iteration — that’s your answer.
+
+Time Complexity:
+Sorting: O(n log n)
+Heap operations: O(n log n)
+Total: O(n log n)
+
+
+--------------------------------------------------------
+Custom Heap with Reverse Index Map (Enhanced Heap)
+
+Motivation: Built-in heaps (like Java’s PriorityQueue or Python’s heapq) are limited in functionality:
+Limitations of System-Provided Heaps:
+
+Dynamic Key Update:
+If the comparison criteria (i.e., sorting metric) of an element already in the heap changes,
+system heaps cannot adjust in O(logN) time.
+Instead, updating the heap would require O(N) time in the worst case.
+
+
+Flexible Deletion:
+System heaps can only efficiently pop the top element.
+Arbitrary deletion of any element from the heap is not supported in O(logN) time.
+The core reason: No reverse index map (i.e., no way to locate the index of a specific element in O(1)).
+
+✅ Custom Heap Design: Core Concepts
+1. Reverse Index Map:
+A hash map that records the index of each element in the heap array.
+Enables fast access and updates for any element in O(1) time.
+
+
+2. Custom Comparator:
+Supports flexible ordering logic, defined based on your specific problem requirements.
+Can easily compare elements using any custom field or function.
+
+
+3. Synchronization Between Structures:
+Critical to maintain consistency between: Heap array ， Reverse index map ，Comparator logic
+Errors often occur due to desynchronized updates.
+
+Benefits of Custom Heap:
+Efficient updates (key value change): O(logN)
+Efficient deletions (any element): O(logN)
+Full control over heap behavior and ordering
+
+Key Challenge:
+The main complexity lies in the coordination of the heap structure,
+reverse index table, and comparator — it’s powerful but also error-prone.
+------------------------------------------------------------
+Manual Custom Heap - E-Commerce Reward System：
+
+Goal:
+Design a system that, for every incoming event (purchase/return),
+outputs a list of the top K customers (by purchase count) eligible for a reward.
+
+Inputs:
+int[] arr: Customer IDs for each event.
+boolean[] op: Operations for each event (True = Purchase, False = Return).
+int k: Maximum number of customers in the reward zone.
+Each pair arr[i], op[i] represents a single event:
+op[i] == true: customer arr[i] made a purchase.
+op[i] == false: customer arr[i] made a return.
+
+System Rules Overview:
+📌 Core Behavior:
+Each time an event occurs, output the current reward zone (top K customers).
+
+
+Maintain two zones:
+Reward Zone (Winners): top K customers.
+Candidate Zone: potential replacements for the reward zone.
+
+
+Event Rules:
+1.Invalid Return:
+If a user returns a product with zero purchase count, the event is invalid.
+The reward list remains unchanged.
+
+2.Purchase/Return Handling:
+
+Purchase → purchase count +1.
+Return → purchase count -1.
+
+3.Top-K Reward Rule:
+
+At most K customers in the reward zone.
+If fewer than K exist, add new qualified users directly.
+
+4.Zone Eligibility:
+
+Any user with purchase count > 0 must be in either the reward zone or candidate zone.
+
+5.Entry Logic:
+
+New users enter reward zone directly if size < K.
+
+If not, they go to candidate zone.
+
+6.Promotion Logic:
+
+If a candidate’s purchase count exceeds the lowest in the reward zone:
+Promote candidate.
+Remove lowest in reward zone.
+Use timestamp (i) to resolve ties.
+
+7.Time Management:
+
+Only one timestamp per user (depending on zone).
+When users switch zones, their zone entry time is reset to the current event index i.
+
+8.Exit Rule:
+
+If a user’s purchase count drops to zero:
+They are removed from both zones.
+Their time records are cleared.
+
+
+9.Re-Entry:
+If a user whose count dropped to 0 buys again later, treat them as new.
+
+
+
+Output:
+
+public List<List<Integer>> topK(int[] arr, boolean[] op, int k)
+For each event, return the current reward list as a snapshot.
+Reward list order: based on business rules (usually sorted by count or consistent order of arrival).
+
+
+----------------------------------------------------------
+
+
+c/c++ 系； 1-2S
+Java 2-4秒
+实现算法题通过：
+代码指令条数在 10 ^ 8~ 10 ^ 9 以内完成算法题的解决
+
+用算法时间复杂度 + 给出数据量，进行估算得出 算法是否能过的结论
+
+
+
+
+
+
+
