@@ -1,0 +1,175 @@
+🌲 Prefix Tree (Trie) — Concept and Operations
+
+📌 Core Ideas:
+In a single string, characters are inserted from left to right into a multi-branch tree.
+Characters are placed along the edges, while nodes store metadata (typically pass and end values).
+All sample strings are inserted this way:
+- If a path (character edge) doesn’t exist, create it.
+- If it exists, reuse it.
+During insertion:
+- pass value is incremented along each visited node.
+- end value is incremented at the final node where the string ends.
+
+
+✅ Key Terminology:
+pass: Number of strings that pass through this node.
+end: Number of strings that end at this node.
+
+
+🎯 Supported Operations:
+1. void insert(String str)
+
+-Insert a string into the Trie.
+-If inserted multiple times, each insertion counts individually.
+
+2. int search(String str)
+-Return how many times the exact string str exists in the Trie.
+
+3. void delete(String str)
+-Remove one instance of the string.
+-If a string is completely removed (no more references), clean up nodes to avoid memory leaks.
+
+4. int prefixNumber(String str)
+-Return the number of strings that start with the given str as a prefix.
+
+🛠 Trie Implementation Strategies:
+1. Fixed-Size Array (for lowercase letters):
+2. HashMap (Flexible Character Set):
+
+
+-----------------------------------------------------------------
+ Non-Comparison-Based Sorting
+These algorithms do not rely on comparisons (unlike quicksort, mergesort, etc.).
+
+
+Bucket Sort Paradigm
+Sorting under the bucket sort idea includes:
+-Counting Sort
+-Radix Sort
+Time Complexity: O(N)
+Extra Space Complexity: O(M) (M is the range or number of buckets)
+Limitation: Efficient only when data satisfies certain distribution constraints (e.g., range or digit width)
+
+Counting Sort
+Ideal when:
+Input is integers
+The range of values is small
+Example use case: sorting test scores between 0–100
+
+Radix Sort
+Typically used when:
+-Input is positive base-10 integers
+-Digit lengths are bounded and consistent
+Sorts based on digit positions (from least significant to most significant)
+Easy to implement for integers, but gets complicated with:
+-Negative numbers
+-Floating point numbers
+-Strings or custom types
+
+
+Stability of Sorting Algorithms
+
+What is Stability?
+A stable sort preserves the relative order of equal elements.
+
+Why Does It Matter?
+For primitive types (int, float, etc.), stability is meaningless.
+For custom objects (like records, employees), stability is critical if secondary attributes matter.
+
+✔️ Stable Sorts (can be made stable):
+-Bubble Sort
+-Insertion Sort
+-Merge Sort
+-Counting Sort
+-Radix Sor
+
+Unstable Sorts (cannot be made stable by design):
+-Selection Sort
+-Heap Sort
+-Quick Sort
+
+---------------------------------------------------------------------------
+
+| Algorithm         | Time Complexity | Extra Space Complexity | Stability |
+| ----------------- | --------------- | ---------------------- | --------- |
+| Selection Sort    | O(N²)           | O(1)                   | ❌ No      |
+| Bubble Sort       | O(N²)           | O(1)                   | ✅ Yes     |
+| Insertion Sort    | O(N²)           | O(1)                   | ✅ Yes     |
+| Merge Sort        | O(N log N)      | O(N)                   | ✅ Yes     |
+| Quick Sort        | O(N log N)      | O(log N) (stack)       | ❌ No      |
+| Heap Sort         | O(N log N)      | O(1)                   | ❌ No      |
+| **Counting Sort** | O(N)            | O(M)                   | ✅ Yes     |
+| **Radix Sort**    | O(N)            | O(N)                   | ✅ Yes     |
+
+🧠 Key Insights
+1.Non-comparison-based sorting (like Counting Sort and Radix Sort) achieves linear time, but requires strict constraints on data format and range.
+2.Comparison-based sorting can be applied to any data type, as long as a comparison rule is defined.
+3.The theoretical lower bound for comparison-based sorting is O(N log N).
+
+4.It's impossible to have a comparison-based sort that is:
+O(N log N) time
+Uses less than O(N) extra space
+Is stable
+→ You can only have two of the three at best.
+5.Sorting algorithm selection:
+-For speed → Choose Quick Sort
+-For low space usage → Choose Heap Sort
+-For stability → Choose Merge Sort
+
+⚠️ Common Pitfalls
+1.Merge Sort with in-place (O(1)) extra space — "in-place merge sort with internal buffering" sacrifices stability and is complex to implement.
+2."In-place merge sort" tutorials that claim O(1) space and keep stability usually degrade time complexity to O(N²) — these are misleading.
+3.Stable Quick Sort variants like “01 stable sort” do exist, but they require additional constraints on the data and are not general-purpose.
+
+
+----------------------------------------------------------------
+🚀 Problem: Stable Odd-Even Rearrangement in an Integer Array
+📌 Requirement
+Given an integer array arr[], move all odd numbers to the left, all even numbers to the right.
+Preserve relative order among odds and evens (i.e., a stable rearrangement).
+Time Complexity: O(N)
+Extra Space Complexity: O(1) (in-place)
+
+---------------------------------------------------------------
+✅ Key Points
+1.Stability Required
+Odd numbers should appear in the same relative order as in the original array.
+Even numbers too.
+This is a stable partitioning problem.
+
+2.In-place & Linear Time
+Cannot use extra arrays (space = O(1)).
+Must finish in one pass or carefully controlled passes (time = O(N)).
+
+3.Approach Idea
+Similar to a stable insertion-like approach:
+Iterate through the array.
+When you find an odd number, shift preceding even numbers to the right, and insert the odd number before them.
+Time = O(N), Space = O(1), and stability is preserved.
+
+🛠️ Engineering-Oriented Sorting Optimization
+1.Stability Consideration in Practice
+For sorting objects, preserving order is often critical (e.g., timestamps, IDs).
+Choose Merge Sort or Bubble/Insertion Sort if stability is needed.
+
+2.Combining O(N log N) and O(N²) Sorts
+In real systems:
+Use O(N²) stable sorts like Insertion Sort on small data chunks.
+Use O(N log N) sort (like Merge Sort) as the high-level driver.
+Many standard libraries (e.g., Java's TimSort) follow this hybrid approach.
+
+3.Trade-offs
+Quick Sort is fast but not stable.
+Heap Sort uses less space but also not stable.
+Merge Sort is stable but uses extra space.
+TimSort (used in Java/Python) combines Insertion Sort and Merge Sort for the best of both worlds.
+
+
+
+
+
+
+
+
+
+

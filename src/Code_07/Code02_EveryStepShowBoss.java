@@ -48,7 +48,7 @@ public class Code02_EveryStepShowBoss {
         public TargetOperation(int limit) {
             customerMap = new HashMap<>();
             witting = new HeapGreater<>((o1, o2) -> o2.buy - o1.buy == 0 ? o1.enterTime - o2.enterTime : o2.buy - o1.buy);
-            rewarding = new HeapGreater<>((o1, o2) -> o2.buy - o1.buy == 0 ? o2.enterTime - o1.enterTime : o2.buy - o1.buy);
+            rewarding = new HeapGreater<>((o1, o2) -> o1.buy - o2.buy == 0 ? o2.enterTime - o1.enterTime : o1.buy - o2.buy);
             this.limit = limit;
         }
 
