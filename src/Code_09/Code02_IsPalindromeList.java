@@ -19,7 +19,8 @@ public class Code02_IsPalindromeList {
         SingleNode reverseRight = right;
 
         boolean result = true;
-        while (left != right && left.next != null) {
+
+        while (left != right && left != null) {
             if (left.value != right.value) {
                 result = false;
                 break;
@@ -125,10 +126,10 @@ public class Code02_IsPalindromeList {
 
     public static void test() {
         System.out.println(Constants.START_TEST);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < Constants.TEST_TIMES; i++) {
             SingleNode head = NumberOperation.isRandomGreaterThanValue(0.5d) ?
-                    getPalindromeList(5, 100) :
-                    SingleListOperation.getRandomLinkedList(10, 100);
+                    getPalindromeList(10, 100) :
+                    SingleListOperation.getRandomLinkedList(20, 100);
 
             boolean isPalindrome = isPalindrome(head);
             boolean isPalindromeByList = isPalindromeByList(head);
