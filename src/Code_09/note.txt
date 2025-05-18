@@ -1,0 +1,88 @@
+
+🧠 Linked List Problem-Solving Strategy in Interviews
+General Principles:
+1.For coding assessments (e.g., online tests):
+-Don’t worry too much about space complexity.
+-Prioritize time efficiency above all.
+2.For interviews (in person or remote):
+-Time complexity is still the most important.
+-But strive to use the most space-efficient solution possible.
+
+
+🔧 Common Tools and Techniques for Linked List Problems:
+1.Use of auxiliary containers:
+-Such as hash tables, arrays, or ArrayLists to store nodes or values.
+2.Fast and slow pointer technique (a.k.a. tortoise and hare):
+-Useful for detecting cycles, finding midpoints, or partitioning the list.
+
+
+🌀 Fast and Slow Pointer Use Cases:
+1.Return the middle node:
+Odd length list: return the exact middle node
+Even length list: return the upper middle node
+
+2.Return the middle node:
+Odd length list: return the exact middle node
+Even length list: return the lower middle node
+
+3.Return the node before the middle:
+Odd length list: return the node before the exact middle
+Even length list: return the node before the upper middle
+
+4.Return the node before the middle:
+Odd length list: return the node before the exact middle
+Even length list: return the node before the lower middle
+
+
+----------------------------------------------------------------
+
+🔍 Common Linked List Interview Question
+Problem:
+1.Given the head of a singly linked list, determine whether the list is a palindrome (reads the same forward and backward)
+1) Hash Table / Stack Approach (Recommended for coding assessments):
+2) In-Place Reversal Approach (Preferred in interviews):
+
+
+2.Linked List Partitioning Problem
+Problem:
+Given the head of a singly linked list and a pivot value x, rearrange the list so that:
+All nodes with values less than x come before
+All nodes equal to x stay in the middle
+All nodes greater than x go to the end
+The relative order within each group does not need to be preserved unless specified
+
+Two Common Solutions:
+1) Array-Based Partition (Recommended for written tests):
+2) Three-Way Split (Recommended for interviews):
+
+
+Deep Copy of a Special Linked List
+You are given a special singly linked list node definition as follows:
+class Node {
+    int value;
+    Node next;
+    Node rand;
+    Node(int val) { value = val; }
+}
+The rand pointer is a new addition to the traditional singly linked list. It can point to any node in the list, or to null.
+
+✅ Task:
+Given the head of a singly linked list of this structure (with no cycles),
+implement a function to create a deep copy of the list and return the head of the copied list.
+
+Time Complexity: O(N)
+Extra Space Complexity: O(1) (excluding the space used for the new list itself)
+
+
+
+
+
+
+给定两个可能有环也可能无环的单链表，头节点head1和head2。请实现一个函数，如果两个链表相交，请返回相交的 第一个节点。如果不相交，返回null
+【要求】
+如果两个链表长度之和为N，时间复杂度请达到O(N)，额外空间复杂度 请达到O(1)。
+
+
+
+能不能不给单链表的头节点，只给想要删除的节点，就能做到在链表上把这个点删掉？
+

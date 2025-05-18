@@ -26,7 +26,6 @@ public class NumberOperation {
     }
 
     public static boolean isRandomGreaterThanValue(double checkValue) {
-        double randomNumber = Math.random();
-        return randomNumber > checkValue;
+        return Math.random() > checkValue;
     }
 }
