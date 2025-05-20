@@ -76,13 +76,19 @@ Extra Space Complexity: O(1) (excluding the space used for the new list itself)
 
 
 
+🔗 Problem 1: Find the First Intersection Node of Two Possibly Cyclic Linked Lists
+💡 Problem Description:
+Given two singly linked lists head1 and head2, which may have cycles or not, implement a function to return the first intersecting node, if any.
+If the two lists do not intersect, return null.
+
+🧠 Requirements:
+Time complexity: O(N), where N is the combined length of the lists.
+
+Extra space: O(1）
+
+🚦 Approach Summary:
+1. Detect Cycle in a List
+2. Handle Three Cases:
 
 
-给定两个可能有环也可能无环的单链表，头节点head1和head2。请实现一个函数，如果两个链表相交，请返回相交的 第一个节点。如果不相交，返回null
-【要求】
-如果两个链表长度之和为N，时间复杂度请达到O(N)，额外空间复杂度 请达到O(1)。
-
-
-
-能不能不给单链表的头节点，只给想要删除的节点，就能做到在链表上把这个点删掉？
 

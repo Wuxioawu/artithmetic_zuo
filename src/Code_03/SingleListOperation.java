@@ -1,6 +1,9 @@
 package Code_03;
 
+import tools.ArrayOperation;
 import tools.NumberOperation;
+
+import java.util.ArrayList;
 
 public class SingleListOperation {
     public static boolean isEmpty(SingleNode head) {
@@ -65,5 +68,16 @@ public class SingleListOperation {
             linkedList2 = linkedList2.next;
         }
         return linkedList1 == null && linkedList2 == null;
+    }
+
+    public static SingleNode getRandomNode(SingleNode head) {
+        if (isEmpty(head)) return null;
+        ArrayList<SingleNode> nodes = new ArrayList<>();
+        SingleNode current = head;
+        while (current != null) {
+            nodes.add(current);
+            current = current.next;
+        }
+        return nodes.get(NumberOperation.getRandomNumber(nodes.size()));
     }
 }
