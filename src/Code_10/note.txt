@@ -1,31 +1,77 @@
-
-二叉树：
-
-结构描述：
-Class Node {
-	V value;
-	Node left;
-	Node right;
+🌳 Binary Tree Structure
+class Node {
+    V value;
+    Node left;
+    Node right;
 }
 
-二叉树的先序、中序、后序遍历
-
-先序：任何子树的处理顺序都是，先头节点、再左子树、然后右子树
-中序：任何子树的处理顺序都是，先左子树、再头节点、然后右子树
-后序：任何子树的处理顺序都是，先左子树、再右子树、然后头节点
-
-
-递归方式实现二叉树的先序、中序、后序遍历
-1）理解递归序
-2）先序、中序、后序都可以在递归序的基础上加工出来
-3）第一次到达一个节点就打印就是先序、第二次打印即中序、第三次即后序
-
-非递归方式实现二叉树的先序、中序、后序遍历
-1）任何递归函数都可以改成非递归
-2）自己设计压栈的来实现
+🔁 Recursive Traversal of a Binary Tree
+🔹 Traversal Definitions:
+Pre-order: For any subtree, process root, then left subtree, then right subtree.
+In-order: For any subtree, process left subtree, then root, then right subtree.
+Post-order: For any subtree, process left subtree, then right subtree, then root.
 
 
-先序遍历和后序遍历，x 的左半部分，和右半部分的交集是x的祖先节点
+🔁 Non-Recursive (Iterative) Traversal of a Binary Tree
+Core Ideas:
+1.Any recursive function can be converted into a non-recursive one by managing your own stack.
+2.Use a custom stack to simulate the call stack of recursion.
+3.Design your stack operations carefully based on the traversal type:
+For pre-order, simulate "root → left → right"
+For in-order, simulate "left → root → right"
+For post-order, simulate "left → right → root
 
+
+🌳 Implementing Level-Order Traversal of a Binary Tree
+1) It is essentially Breadth-First Search (BFS) using a queue.
+Start from the root node.
+Use a queue to keep track of nodes at the current level.
+Add the left and right children of each node to the queue.
+2) You can detect the end of a level using a flag variable or by checking the current queue size.
+
+🌳 Binary Tree Serialization and Deserialization
+✅ 1) Pre-order Serialization and Deserialization
+✅ 2) Level-order (Breadth-First) Serialization and Deserialization
+
+----------------------------------------------------------------------------------------
+
+🌲Common Interview Question:
+
+Convert an N-ary Tree to a Binary Tree and back
+🧠 Technique: Left-Child Right-Sibling (LC-RS) Representation
+
+1. How to Design a Function to Print the Entire Tree
+
+
+📏 2. How to Find the Maximum Width of a Binary Tree
+
+
+🔄 3. Given a Node, Find Its In-order Successor
+
+ Class Node {
+ 	V value;
+ 	Node left;
+ 	Node right;
+ 	Node parent;
+ }
+The in-order successor of a node is the node that appears immediately
+after it in an in-order traversal of the binary tree.
+ Method 1: Brute Force (In-order List)
+ Method 2: Use parent Pointer (Optimal)
+
+📄 Paper Folding Problem (Classic Recursion Interview Question)
+🔹 Problem Description:
+Take a strip of paper and fold it from bottom to top once.
+After making the crease and unfolding it, the crease points downward (i.e., it's a valley fold, or a "down" crease).
+If you fold the paper from bottom to top twice (i.e., two consecutive folds), and then unfold it, you get three creases.
+
+From top to bottom, the creases are:
+down, down, up
+
+🔹 Goal:
+Given an integer N, representing the number of times the paper is folded from bottom to top,
+print the sequence of fold directions from top to bottom after unfolding.
+"down" = valley fold (concave)
+"up" = mountain fold (convex)
 
 

@@ -8,7 +8,6 @@ import java.util.Arrays;
  * */
 
 public class FindPartitionCost {
-
     public static int[] findPartition(int[] cost, int k) {
         if (cost == null || cost.length == 0) return null;
         if (k <= 0 || k > cost.length) return null;
@@ -28,7 +27,6 @@ public class FindPartitionCost {
             minSum += sumTwoNum[i];
             maxSum += sumTwoNum[sumTwoNum.length - 1 - i];
         }
-
         return new int[]{minSum, maxSum};
     }
 }
