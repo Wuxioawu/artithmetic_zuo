@@ -1,69 +1,141 @@
-判断二叉树是否是完全二叉树
-
-1. 有右孩子，无左孩子
-2. 第一次遇到左右孩子不双全的时候，之后遍历的节点都是叶子节点
-按层遍历，一个节点一个节点看
+🧠 Binary Tree Recursive Framework (for Tree DP Problems)
+This is a universal recursive pattern that can solve most binary tree problems in coding interviews, especially those involving Tree DP (Dynamic Programming on Trees).
+The core idea is to leverage recursion's natural ability to traverse trees and extract structured information from each subtree.
 
 
-二叉树递归套路：
-可以解决面试中绝大多数的二叉树问题尤其是树型dp问题
-本质是利用递归遍历二叉树的便利性
+📌 Step-by-Step Framework:
+1.Assume you are at a node X, and you can get any information from X.left and X.right.
+2.Based on that assumption, analyze all the ways the subtree rooted at X might contribute to the final answer.
+👉 This step is the most important: analyze how the current root participates in the global result.
+3.After listing all possibilities, decide what kind of information you need from the left and right subtrees.
+4.Define a custom structure S that contains all the information a subtree must return to its parent.
+👉 This "Info" structure helps in propagating necessary data upward.
+5.Design the recursive function to return S, and ensure every subtree returns the same kind of structure.
+6.Implement the logic in code:
+Call the recursive function on left and right
+Use the returned S objects to compute the result for the current node X
 
 
-1）假设以X节点为头，假设可以向X左树和X右树要任何信息
-2）在上一步的假设下，讨论以X为头节点的树，得到答案的可能性（最重要）
-3）列出所有可能性后，确定到底需要向左树和右树要什么样的信息
-4）把左树信息和右树信息求全集，就是任何一棵子树都需要返回的信息S
-5）递归函数都返回S，每一棵子树都这么要求
-6）写代码，在代码中考虑如何把左树的信息和右树信息整合出整棵树的信息
+✅ Benefits:
+Modular Design: Makes your solution clean and easy to debug.
+Scalability: Easy to extend to solve variations of tree problems.
+Best Fit for: Maximum path sum, lowest common ancestor, diameter of binary tree, largest BST subtree, party happiness problem, etc.
 
 
-1.判断二叉树是否是搜索二叉树
-搜索二叉树，每一颗子树，左边树都比头小，右树都比头节点大
-经典二叉树：没有重复值
+Binary Tree Interview Notes (English Version)
 
-1. 中序遍历，看一下是否是上升的
-2. 递归套路
+------------------------------------------
+1. Check if a Binary Tree is a Complete Binary Tree
+------------------------------------------
+Conditions:
+- If a node has a right child but no left child → Not a complete binary tree.
+- Once a node is found that is not full (does not have both children), all subsequent nodes must be leaf nodes.
 
+Approach:
+- Use level-order traversal (BFS).
+- Traverse node by node and check the above conditions.
 
-2.给定一棵二叉树的头节点head，返回这颗二叉树是不是平衡二叉树
-平衡二叉树，每一个左树和右树的高度相差不超过1
+------------------------------------------
+2. Check if a Binary Tree is a Binary Search Tree (BST)
+------------------------------------------
+Definition:
+- For every subtree, the left subtree nodes must be less than the root, and the right subtree nodes must be greater than the root.
+- A standard BST does not contain duplicate values.
 
+Approach 1:
+- In-order traversal: verify the result is a strictly increasing sequence.
 
-3.给定一棵二叉树的头节点head，返回这颗二叉树是不是满二叉树
-满二叉树：高度是h，节点树是2^h -1 个节点，换句话来说，其实就是求二叉树的高度
+Approach 2:
+- Use recursion (tree DP): Return min, max, isBST for each subtree and validate recursively.
 
+------------------------------------------
+3. Check if a Binary Tree is a Balanced Binary Tree
+------------------------------------------
+Definition:
+- For every node, the height difference between left and right subtree must not exceed 1.
 
-4.给定一棵二叉树的头节点head，返回这颗二叉树中最大的二叉搜索子树的大小
+Approach:
+- Use recursion to return:
+    - height of subtree
+    - whether the subtree is balanced
 
+------------------------------------------
+4. Check if a Binary Tree is a Full Binary Tree
+------------------------------------------
+Definition:
+- A full binary tree of height h has exactly 2^h - 1 nodes.
 
-给定一棵二叉树的头节点head，任何两个节点之间都存在距离，返回整棵二叉树的最大距离
+Approach:
+- Calculate the height and total number of nodes.
+- Check if node count == 2^height - 1.
 
+------------------------------------------
+5. Find the Size of the Largest BST Subtree in a Binary Tree
+------------------------------------------
+Approach:
+- Use recursive tree DP.
+- For each node, return:
+    - whether it is a BST
+    - size of subtree
+    - min and max values in the subtree
+    - max size of BST found so far
 
-判断二叉树是否是完全二叉树，如何用递归套路来解这个题
+------------------------------------------
+6. Find the Maximum Distance Between Any Two Nodes in a Binary Tree
+------------------------------------------
+Definition:
+- The distance between any two nodes is the number of edges in the path.
 
-给定一棵二叉树的头节点head，返回这颗二叉树中最大的二叉搜索子树的头节点
+Approach:
+- For each node, use recursion to return:
+    - height
+    - max distance found in the subtree
+- Distance through a node = leftHeight + rightHeight + 1
 
-给定一棵二叉树的头节点head，和另外两个节点a和b。返回a和b的最低公共祖先
+------------------------------------------
+7. Determine if a Binary Tree is Complete Using Recursive Method
+------------------------------------------
+Recursive Approach:
+- For each subtree, return:
+    - height
+    - whether it is full
+    - whether it is complete
+- Combine left and right subtree info to determine completeness
 
+------------------------------------------
+8. Find the Root of the Largest BST Subtree in a Binary Tree
+------------------------------------------
+Same as problem #5, but return the root node of the largest BST subtree instead of its size.
 
+------------------------------------------
+9. Lowest Common Ancestor (LCA) of Two Nodes in a Binary Tree
+------------------------------------------
+Approach 1:
+- Use HashMap to record each node's parent.
+- Traverse up from node a and store ancestors in HashSet.
+- Traverse from node b until you find a node in the HashSet.
 
-派对的最大快乐值
-员工信息的定义如下:
+Approach 2 (Recursive):
+- If root is a or b, return root.
+- Recursively find LCA in left and right subtree.
+
+------------------------------------------
+10. Party Maximum Happiness Problem (Tree DP on N-ary Tree)
+------------------------------------------
+Class Definition:
 class Employee {
-    public int happy; // 这名员工可以带来的快乐值
-    List<Employee> subordinates; // 这名员工有哪些直接下级
+    public int happy;
+    List<Employee> subordinates;
 }
 
-派对的最大快乐值
-公司的每个员工都符合 Employee 类的描述。整个公司的人员结构可以看作是一棵标准的、 没有环的多叉树。树的头节点是公司唯一的老板。除老板之外的每个员工都有唯一的直接上级。
-叶节点是没有任何下属的基层员工(subordinates列表为空)，除基层员工外，每个员工都有一个或多个直接下级。
+Rules:
+1. If an employee attends, their direct subordinates cannot.
+2. Total happiness is the sum of attending employees' happiness.
+3. Goal: Maximize total happiness.
 
-派对的最大快乐值
-这个公司现在要办party，你可以决定哪些员工来，哪些员工不来，规则：
-1.如果某个员工来了，那么这个员工的所有直接下级都不能来
-2.派对的整体快乐值是所有到场员工快乐值的累加
-3.你的目标是让派对的整体快乐值尽量大
-给定一棵多叉树的头节点boss，请返回派对的最大快乐值。
-
-
+Approach:
+- Use recursive tree DP.
+- For each employee, return:
+    - max happiness if they attend
+    - max happiness if they do not attend
+- Combine results for each subtree to determine the global maximum.
