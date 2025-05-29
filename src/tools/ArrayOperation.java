@@ -39,7 +39,7 @@ public class ArrayOperation {
         int[] arr = new int[NumberOperation.getRandomNumberIncludeValue(maxSize)];
 
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = NumberOperation.getRandomNumberIncludeValue(maxValue);
+            arr[i] = NumberOperation.getRandomNumberIncludeValue(maxValue) + 1;
         }
         return arr;
     }
