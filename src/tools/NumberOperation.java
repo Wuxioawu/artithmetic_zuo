@@ -5,7 +5,6 @@ import java.util.Random;
 public class NumberOperation {
 
     /**
-     *
      * @param value the integer number
      * @return the random number
      */
@@ -17,12 +16,16 @@ public class NumberOperation {
         return (int) (Math.random() * (value));
     }
 
+    public static int getRandomNumberTurnTo_1(int value) {
+        return (int) (Math.sqrt(Math.random()) * (value));
+    }
+
     public static int getRandomOddNumber(int value) {
-       return  (new Random().nextInt(value / 2)) * 2 +1;
+        return (new Random().nextInt(value / 2)) * 2 + 1;
     }
 
     public static int getRandomEvenNumber(int value) {
-        return getRandomOddNumber(value) - 1 ;
+        return getRandomOddNumber(value) - 1;
     }
 
     public static boolean isRandomGreaterThanValue(double checkValue) {
