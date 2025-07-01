@@ -11,12 +11,16 @@ public class Node {
     List<Node> nextNode;
     List<Edge> nextEdges;
 
+    // undirected graph to use
+    List<Edge> edges;
+
     public Node(int value) {
         this.value = value;
         this.inEdges = 0;
         this.outEdges = 0;
         nextNode = new ArrayList<>();
         nextEdges = new ArrayList<>();
+        edges = new ArrayList<>();
     }
 
 }

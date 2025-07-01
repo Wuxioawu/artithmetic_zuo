@@ -34,6 +34,33 @@ public class GraphOperation {
         return graph;
     }
 
+
+    public static Graph getRandomGraphWitCircle(int maxSizeNode, int maxValue, int maxWeight) {
+        Graph randomGraph = getRandomGraph(maxSizeNode, maxValue, maxWeight);
+
+        ArrayList<Node> nodeList = new ArrayList<>(randomGraph.nodes.values());
+
+        for (int i = 0; i < nodeList.size(); i++) {
+            Node currentNode = nodeList.get(i);
+            Node nextNode = nodeList.get(NumberOperation.getRandomNumber(nodeList.size()));
+            if (!currentNode.nextEdges.contains(nextNode) && currentNode != nextNode) {
+                Edge edge = new Edge(NumberOperation.getRandomNumberIncludeValue(maxWeight), currentNode, nextNode);
+
+                currentNode.nextEdges.add(edge);
+                currentNode.outEdges++;
+                currentNode.nextNode.add(nextNode);
+
+                currentNode.edges.add(edge);
+
+                nextNode.inEdges++;
+                nextNode.edges.add(edge);
+
+                randomGraph.edges.add(edge);
+            }
+        }
+        return randomGraph;
+    }
+
     public static void printGraph(Graph graph) {
         System.out.println();
         System.out.println("The graph Node is: ");
@@ -43,7 +70,7 @@ public class GraphOperation {
         System.out.println();
         System.out.println("The graph edges is: ");
         for (Edge edge : graph.edges) {
-            System.out.print(edge.from.value + " -> " + edge.to.value + " ");
+            System.out.print(edge.from.value + " weight = " + edge.weight + "-->" + edge.to.value + " ");
         }
         System.out.println();
     }
@@ -119,12 +146,15 @@ public class GraphOperation {
 
                 Node from = currentAllNodes.get(NumberOperation.getRandomNumberTurnTo_1(currentAllNodes.size() - 1));
 
-                edge = new Edge(NumberOperation.getRandomNumber(maxWeight), from, currentNode);
+                edge = new Edge(NumberOperation.getRandomNumberIncludeValue(maxWeight), from, currentNode);
 
 
                 from.nextNode.add(currentNode);
                 from.outEdges++;
                 from.nextEdges.add(edge);
+                from.edges.add(edge);
+
+                currentNode.edges.add(edge);
                 currentNode.inEdges++;
             }
 
@@ -134,6 +164,43 @@ public class GraphOperation {
 
             currentParent = findFather(currentNode);
         }
+    }
+
+    public static Graph dealWithGraph(Graph graph) {
+        if (graph == null) return null;
+
+        int[][] visited = new int[graph.nodes.size()][graph.nodes.size()];
+
+        HashMap<Node, Integer> indexMap = new HashMap<>();
+        int index = 0;
+        for (Map.Entry<Integer, Node> entry : graph.nodes.entrySet()) {
+            indexMap.put(entry.getValue(), index++);
+        }
+        HashSet<Edge> edgeHashSet = graph.edges;
+
+        for (Edge edge : edgeHashSet) {
+            int fromIndex = indexMap.get(edge.from);
+            int toIndex = indexMap.get(edge.to);
+
+            if (visited[fromIndex][toIndex] != 1) {
+                visited[fromIndex][toIndex] = 1;
+                visited[toIndex][fromIndex] = 1;
+            } else {
+
+                edgeHashSet.remove(edge);
+                Node from = edge.from;
+                Node to = edge.to;
+
+                from.nextNode.remove(to);
+                from.nextEdges.remove(edge);
+                from.outEdges--;
+                from.edges.remove(edge);
+
+                to.inEdges--;
+                to.edges.remove(edge);
+            }
+        }
+        return graph;
     }
 }
 
