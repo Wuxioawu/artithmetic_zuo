@@ -1,25 +1,32 @@
-暴力递归
+Brute-force Recursion
+Brute-force recursion is essentially about trying all possibilities. It usually involves:
+1. Converting the original problem into a smaller version of the same type (sub-problem).
+2. Defining a base case, where recursion should stop.
+3. Making decisions based on the results of sub-problems.
+4. Not recording or memorizing the result of each sub-problem (no caching or memoization).
 
-暴力递归就是尝试
-1，把问题转化为规模缩小了的同类问题的子问题
-2，有明确的不需要继续进行递归的条件(base case)
-3，有当得到了子问题的结果之后的决策过程
-4，不记录每一个子问题的解
-
-
-熟悉什么叫尝试？
-打印n层汉诺塔从最左边移动到最右边的全部过程
-打印一个字符串的全部子序列
-打印一个字符串的全部子序列，要求不要出现重复字面值的子序列
-打印一个字符串的全部排列
-打印一个字符串的全部排列，要求不要出现重复的排列
+The “Black Box” Thinking
+When using recursion, it helps to treat the recursive function as a black box:
+First, define clearly what the function does (input → output).
+Then focus on how to use it in the current layer of the problem.
+Don’t worry about how it works internally while building the logic — trust the black box.
 
 
-仰望好的尝试？
-给你一个栈，请你逆序这个栈，
-不能申请额外的数据结构，
-只能使用递归函数。 如何实现?
 
+Tower of Hanoi (N levels)
+Print All Subsequences of a String
+Print All Unique Subsequences
+Print All Permutations of a String
+Print All Unique Permutations
+
+
+A Classic Example of Recursive Thinking
+❓ Reverse a Stack Using Recursion
+Problem:
+Given a stack, reverse it without using any extra data structure, and only use recursion.
+
+
+----------------------------------------------------------------
 
 怎么尝试一件事？
 1）有经验但是没有方法论？
