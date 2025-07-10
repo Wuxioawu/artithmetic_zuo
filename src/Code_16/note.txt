@@ -44,6 +44,7 @@ ba + ba + c  3  abcd + abcd 2  abcd+ba 2
 比如 ： str1 = “a12b3c456d”,str2 = “1ef23ghi4j56k”
 最长公共子序列是“123456”，所以返回长度6
 
+
 题目一
 给定一个字符串str，返回这个字符串的最长回文子序列长度
 比如 ： str = “a12b3c43def2ghi1kpm”
