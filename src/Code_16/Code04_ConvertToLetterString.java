@@ -62,7 +62,7 @@ public class Code04_ConvertToLetterString {
 
     private static void test() {
         System.out.println(Constants.START_TEST);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             String str = getTheRandomNumberString(10, 10);
             int number = number(str);
             int dp1 = dp1(str);
