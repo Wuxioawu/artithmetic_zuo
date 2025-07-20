@@ -1,4 +1,4 @@
-package LeetCode.todo;
+package LeetCode;
 
 public class Code58_LengthOfWord {
 
