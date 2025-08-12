@@ -3,6 +3,8 @@ package Code_16;
 import tools.Constants;
 import tools.NumberOperation;
 
+import java.util.HashMap;
+
 //https://leetcode.com/problems/stickers-to-spell-word
 public class Code05_StickersToSpellWord {
     public static int minStickers1(String[] stickers, String target) {
@@ -54,7 +56,7 @@ public class Code05_StickersToSpellWord {
         for (int i = 0; i < stickers.length; i++) {
             char[] stickerArray = stickers[i].toCharArray();
             for (int j = 0; j < stickerArray.length; j++) {
-                numberStickers[i][stickerArray[i] - 'a']++;
+                numberStickers[i][stickerArray[j] - 'a']++;
             }
         }
         int ans = process2(numberStickers, target);
@@ -74,13 +76,14 @@ public class Code05_StickersToSpellWord {
         }
 
         for (int i = 0; i < stickers.length; i++) {
+
             int[] sticker = stickers[i];
             // the first stickers contain the target[0]
             if (sticker[targetCharArray[0] - 'a'] > 0) {
                 StringBuilder sb = new StringBuilder();
                 for (int j = 0; j < 26; j++) {
-                    if(statisticTarget[j] > 0) {
-                        int num = targetCharArray[j] - sticker[j];
+                    if (statisticTarget[j] > 0) {
+                        int num = statisticTarget[j] - sticker[j];
                         for (int k = 0; k < num; k++) {
                             sb.append((char) ('a' + j));
                         }
@@ -91,6 +94,54 @@ public class Code05_StickersToSpellWord {
             }
         }
         return min + (min == Integer.MAX_VALUE ? 0 : 1);
+    }
+
+    private static int minStickers3(String[] stickers, String target) {
+        if (stickers == null || target == null || stickers.length == 0 || target.isEmpty()) return -1;
+        int[][] numStickers = new int[stickers.length][26];
+        for (int i = 0; i < stickers.length; i++) {
+            char[] stickerArray = stickers[i].toCharArray();
+            for (int j = 0; j < stickerArray.length; j++) {
+                numStickers[i][stickerArray[j] - 'a']++;
+            }
+        }
+        HashMap<String, Integer> dp = new HashMap<>();
+        int ans = process3(numStickers, target, dp);
+        return ans == Integer.MAX_VALUE ? -1 : ans;
+    }
+
+
+    private static int process3(int[][] stickers, String target, HashMap<String, Integer> dp) {
+        if (target.isEmpty()) return 0;
+        if (dp.containsKey(target)) return dp.get(target);
+
+        int min = Integer.MAX_VALUE;
+
+        char[] targetArray = target.toCharArray();
+        int[] stickTarget = new int[26];
+
+        for (int i = 0; i < targetArray.length; i++) {
+            stickTarget[targetArray[i] - 'a']++;
+        }
+
+        for (int i = 0; i < stickers.length; i++) {
+            int[] sticker = stickers[i];
+            if (sticker[targetArray[0] - 'a'] > 0) {
+                StringBuilder sb = new StringBuilder();
+                for (int j = 0; j < 26; j++) {
+                    int num = stickTarget[j] - sticker[j];
+                    for (int k = 0; k < num; k++) {
+                        sb.append((char) ('a' + j));
+                    }
+                }
+                String rest = sb.toString();
+                min = Math.min(process3(stickers, rest, dp), min);
+            }
+        }
+
+        int ans = min + (min == Integer.MAX_VALUE ? 0 : 1);
+        dp.put(target, ans);
+        return ans;
     }
 
 
@@ -137,10 +188,10 @@ public class Code05_StickersToSpellWord {
          * Output: -1
          */
 
-        String[] stickers = {"with","example","science"};
+        String[] stickers = {"with", "example", "science"};
         String target = "thehat";
 
-        int i = minStickers2(stickers, target);
+        int i = minStickers3(stickers, target);
         System.out.println(i);
 
 //      String minus = minus(target, stickers[1]);
