@@ -28,6 +28,15 @@ public class ArrayOperation {
         return arr == null || arr.length < 1;
     }
 
+    public static int[] getArray(int stable_size, int maxValue) {
+        int[] arr = new int[stable_size];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = NumberOperation.getRandomNumberIncludeValue(maxValue) + 1;
+        }
+        return arr;
+    }
+
     /**
      * @param maxSize  Maximum length of the generated array
      * @param maxValue Maximum value among the generated data elements
@@ -35,13 +44,7 @@ public class ArrayOperation {
      */
     public static int[] getRandomArray(int maxSize, int maxValue) {
         if (maxSize < 1) return null;
-
-        int[] arr = new int[NumberOperation.getRandomNumberIncludeValue(maxSize)];
-
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = NumberOperation.getRandomNumberIncludeValue(maxValue) + 1;
-        }
-        return arr;
+        return getArray(NumberOperation.getRandomNumberIncludeValue(maxSize), maxValue);
     }
 
     /**
