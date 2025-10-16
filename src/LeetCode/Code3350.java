@@ -28,7 +28,9 @@ public class Code3350 {
                 right = i + P[i];
             }
             maxK = Math.max(maxK, P[i] + 1);
+            int t = Integer.MIN_VALUE;
         }
+
         return maxK;
     }
 
