@@ -1,19 +1,27 @@
+
 package tools;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ArrayOperation {
 
-    // swap two element in a array
+    // swap two element in an array with bounds checks
     public static void swap(int[] arr, int i, int j) {
+        if (arr == null) throw new IllegalArgumentException("arr must not be null");
+        if (i < 0 || j < 0 || i >= arr.length || j >= arr.length)
+            throw new IndexOutOfBoundsException("index out of bounds");
+        if (i == j) return;
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
-
     public static void printArray(int[] arr) {
-        if (arr == null) return;
+        if (arr == null) {
+            System.out.println("null");
+            return;
+        }
         for (int j : arr) {
             System.out.print(j + " ");
         }
@@ -25,26 +33,32 @@ public class ArrayOperation {
     }
 
     public static boolean isEmpty(int[] arr) {
-        return arr == null || arr.length < 1;
+        return arr == null || arr.length == 0;
     }
 
-    public static int[] getArray(int stable_size, int maxValue) {
-        int[] arr = new int[stable_size];
-
+    // create an array of a fixed size with values in [0, maxValue]
+    public static int[] getArray(int size, int maxValue) {
+        if (size <= 0) return new int[0];
+        if (maxValue < 0) throw new IllegalArgumentException("maxValue must be >= 0");
+        int[] arr = new int[size];
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = NumberOperation.getRandomNumberIncludeValue(maxValue) + 1;
+            arr[i] = rnd.nextInt(maxValue + 1);
         }
         return arr;
     }
 
     /**
-     * @param maxSize  Maximum length of the generated array
-     * @param maxValue Maximum value among the generated data elements
-     * @return the generated random array
+     * @param maxSize  Maximum length of the generated array (>= 0)
+     * @param maxValue Maximum value among the generated data elements (>= 0)
+     * @return the generated random array (may be empty)
      */
     public static int[] getRandomArray(int maxSize, int maxValue) {
-        if (maxSize < 1) return null;
-        return getArray(NumberOperation.getRandomNumberIncludeValue(maxSize), maxValue);
+        if (maxSize <= 0) return new int[0];
+        if (maxValue < 0) throw new IllegalArgumentException("maxValue must be >= 0");
+        // size in [0, maxSize]
+        int size = ThreadLocalRandom.current().nextInt(maxSize + 1);
+        return getArray(size, maxValue);
     }
 
     /**
@@ -53,26 +67,18 @@ public class ArrayOperation {
      * @return is equal between arr1 and arr2
      */
     public static boolean isEqualArrays(int[] arr1, int[] arr2) {
-        if (arr1 == null && arr2 == null) return true;
-        if (arr1 == null || arr2 == null) return false;
-        if (arr1.length != arr2.length) return false;
-        for (int i = 0; i < arr1.length; i++) {
-            if (arr1[i] != arr2[i]) return false;
-        }
-        return true;
+        return Arrays.equals(arr1, arr2);
     }
 
     /**
-     * copy all elements of a array to another array
+     * copy all elements of an array to another array
      *
      * @param arr original array
-     * @return the new array which is same elements with original array
+     * @return the new array which has same elements as original array (null -> null)
      */
     public static int[] copyArray(int[] arr) {
         if (arr == null) return null;
-        int[] newArr = new int[arr.length];
-        System.arraycopy(arr, 0, newArr, 0, arr.length);
-        return newArr;
+        return Arrays.copyOf(arr, arr.length);
     }
 
     public static void sort(int[] arr) {
@@ -86,7 +92,7 @@ public class ArrayOperation {
     public static void testSort(TestExecution test) {
         int maxSize = 100;
         int maxValue = 100;
-        int times = 1000000;
+        int times = 1_000_000;
 
         for (int i = 0; i < times; i++) {
             int[] arr = getRandomArray(maxSize, maxValue);
@@ -107,36 +113,35 @@ public class ArrayOperation {
 
     public static boolean isIncludeNumber(int[] arr, int num) {
         if (arr == null) return false;
-        for (int j : arr)
-            if (j == num) {
-                return true;
-            }
+        for (int j : arr) if (j == num) return true;
         return false;
     }
 
-
     public static int getRandomElement(int[] arr) {
         if (arr == null || arr.length < 1) return -1;
-
-        return arr[NumberOperation.getRandomNumber(arr.length)];
+        return arr[ThreadLocalRandom.current().nextInt(arr.length)];
     }
 
     public static int[] removeSameElements(int[] arr) {
         if (isEmpty(arr)) return arr;
-
         Set<Integer> set = new LinkedHashSet<>();
-
-        for (int num : arr) {
-            set.add(num);
-        }
-        return set.stream().mapToInt(Integer::intValue).toArray();
+        for (int num : arr) set.add(num);
+        int[] res = new int[set.size()];
+        int i = 0;
+        for (int v : set) res[i++] = v;
+        return res;
     }
 
     public static void shuffleArray(int[] arr, int left, int right) {
-        if (isEmpty(arr)) return;
-        Random random = new Random();
-        for (int i = right; i >= left; i--) {
-            int index = left + random.nextInt(right - left + 1);
+        if (arr == null) return;
+        int n = arr.length;
+        if (n == 0) return;
+        int l = Math.max(0, left);
+        int r = Math.min(n - 1, right);
+        if (l >= r) return;
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        for (int i = r; i >= l; i--) {
+            int index = rnd.nextInt(l, r + 1);
             swap(arr, index, i);
         }
     }
@@ -144,38 +149,14 @@ public class ArrayOperation {
     // Generate a random element that is not present in the current array
     public static int getRandomElementOutArray(int[] arr, int value) {
         if (isEmpty(arr)) return Constants.UN_INVALID;
-
+        if (value < 0) throw new IllegalArgumentException("value must be >= 0");
         Set<Integer> set = new HashSet<>();
-
-        for (int num : arr) {
-            set.add(num);
-        }
-        int candidate = Constants.UN_INVALID;
+        for (int num : arr) set.add(num);
+        int candidate;
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
         do {
-            candidate = NumberOperation.getRandomNumberIncludeValue(value);
+            candidate = rnd.nextInt(value + 1);
         } while (set.contains(candidate));
         return candidate;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
