@@ -67,6 +67,7 @@ public class Code01_MonotonousStack {
                 result[pop.get(j)][1] = stack.isEmpty() ? -1 : stack.peek().getLast();
             }
         }
+
         return result;
     }
 
